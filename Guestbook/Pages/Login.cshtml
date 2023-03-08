@@ -1,0 +1,39 @@
+﻿@page
+@model Guestbook.LoginModel
+@{
+    ViewData["Title"] = "Login";
+    
+}
+
+@Html.Partial("Alert.cshtml")
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="display-4">Login</h1>
+    </div>
+    <div class="col-12">
+        <p>To this forum. Discuss everything</p>
+    </div>
+
+</div>
+<div class="row col mb-4">
+
+        @{
+            if(!Handler.loggedIn){
+                <form asp-page-handler="login" method="post">
+                    <label class="" for="userid">Username</label>
+                    <input class="form-control" type="text" name="userid" id="userid" placeholder="Username">
+                    <br/>
+                    <label class="" for="password">Password</label>
+                    <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                    <br/>
+                    <a class="btn btn-secondary" asp-area="" asp-page="/Index">Back</a>    
+                    <button class="btn btn-primary" type="submit" value="Login">Login</button>
+                </form>
+            }
+
+            
+        }
+
+    
+</div>

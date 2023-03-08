@@ -1,0 +1,54 @@
+﻿@page
+@model Guestbook.MySiteModel
+@{
+    ViewData["Title"] = "My Site";
+    
+}
+@{
+
+    List<User> users = Handler.getUsers(Handler.CurrUser);
+
+
+}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="display-4">My site</h1>
+    </div>
+    <div class="col-12">
+        <p>Change your info</p>
+    </div>
+</div>
+
+<div class="row col mb-4">
+
+        @{
+            if(Handler.loggedIn){
+                <form asp-page-handler="change" method="post">
+                    <div class="form-group">
+                        <label class="" for="name">Name</label>
+                        <input class="form-control" type="text" name="name" id="name" placeholder="@users[0].name" autocomplete="off">
+                        <br/>
+                        <label class="" for="email">Email</label>
+                        <input class="form-control" type="text" name="email" id="email" placeholder="@users[0].email" autocomplete="off">
+                        <br/>
+                        <label class="" for="userid">Username</label>
+                        <input class="form-control" type="text" name="userid" id="userid" placeholder=New Password" autocomplete="off">
+                        <br/>
+                        <label class="" for="password">New password</label>
+                        <input class="form-control" type="password" name="password" id="password" placeholder="Password" autocomplete="off">
+                        <br/>
+                        <label class="" for="password">Old password</label>
+                        <input class="form-control" type="password" name="oldpassword" id="password" placeholder="Password" autocomplete="off">
+                        <br/>
+                        <a class="btn btn-secondary" asp-area="" asp-page="/Index">Back</a>    
+                        <input type="submit" value="Change" class="btn btn-primary"/>
+                    </div>
+                </form>
+
+            }
+
+            
+        }
+
+    
+</div>

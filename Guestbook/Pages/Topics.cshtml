@@ -1,0 +1,100 @@
+﻿@page
+@model Guestbook.TopicsModel
+@{
+    ViewData["Title"] = "Topics";
+    List<Topic> topics = Handler.getTopics();
+    List<Post> post = Handler.getPosts("ALL");
+
+
+}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <a class="btn btn-secondary" asp-area="" asp-page="/Index">Back</a>     
+        <a class="btn btn-primary float-right" asp-area="" asp-page="/NewTopic">New Topic</a>     
+    </div>
+</div>
+
+
+<div class="container mb-4">
+    <div class="row border bg-primary">
+            <div class="col-5">
+                <p class="p-0">
+                    <b>Topics</b>
+                </p>
+            </div>
+            <div class="col-3">
+                <p><b>Created by</b></p
+            ></div>
+
+            <div class="col-3">
+                <p><b>Latest post</b></p>
+            </div>
+            <div class="col-1">
+                <p class="float-right text-right">
+                    <b>Posts</b>
+                </p>
+            </div>
+            
+            
+    </div>
+
+
+
+
+     @{   
+
+
+        @for (int i = 0; i < topics.Count; i++)
+        {   
+            <div class="row border">
+                <div class="col-5">
+                    <form asp-page-handler="view" method="post">
+                        <button class="btn btn-default text-left user-link">@topics[i].topic</button>
+                        <input type="hidden" name="topic" value="@topics[i].topic" />
+                    </form>
+                </div>
+                
+                
+                <div class="col-3">
+                    <p class="text-truncate">
+                        <a class="user-link" asp-area="" asp-page="/User">@topics[i].userid</a>    
+                        <br/>
+                        <small style="">@topics[i].created.ToString("yyyy/MM/dd HH:mm")</small>
+                    </p>
+                </div>
+
+                <div class="col-3">
+                    <p class="text-truncate">
+                       <small style="">@Handler.getLatestPostTime(topics[i].topic).ToString("yyyy/MM/dd HH:mm")</small> 
+
+                    </p>
+                </div>
+                <div class="col-1 float-right text-right">
+                    <p class="text-truncate">@Handler.getPosts(topics[i].topic).Count</p>
+                </div>
+            </div>
+                
+
+        }
+    }    
+
+    
+
+</div>
+
+@{   
+    if(topics.Count > 10){
+        <div class="row mb-4">
+            <div class="col-12">
+                <a class="btn btn-secondary" asp-area="" asp-page="/Index">Back</a>     
+                <a class="btn btn-primary float-right" asp-area="" asp-page="/NewTopic">New Topic</a>     
+            </div>
+        </div>
+        
+
+
+    }
+    
+        
+}    

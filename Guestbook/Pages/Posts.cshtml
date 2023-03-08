@@ -1,0 +1,89 @@
+﻿@page
+@model Guestbook.PostsModel
+@{
+    ViewData["Title"] = "Posts";
+    List<Post> posts = Handler.getPosts(Handler.CurrTopic);
+
+}
+
+@Html.Partial("Alert.cshtml")
+
+<div class="row mb-4">
+    <div class="col">
+        <a class="btn btn-secondary" asp-area="" asp-page="/Topics">Back</a> 
+    </div>     
+        @{
+        <div class="col-auto">
+        <form asp-page-handler="post" method="post" class="form-inline">
+               <input class="form-control" type="text" name="post" id="post" placeholder="">
+                <button class="btn btn-primary float-right" id="sendpost">Write answer</button>
+                    
+
+        </form>
+        </div>
+        }
+    
+</div>
+
+
+<div class="container mb-4">
+    <div class="row border bg-primary">
+            <div class="col-10">
+                <p class=""><b>@Handler.CurrTopic</b></p>
+            </div>
+            <div class="col-2">
+                <p class="float-right"><b>Posts: @posts.Count</b></p>
+            </div>
+            
+            
+    </div>
+
+
+
+
+     @{   
+
+
+        @for (int i = 0; i < posts.Count; i++)
+        {   
+            <div class="row border">
+                <div class="col-3 bg-light">
+                    <p class="text-truncate">
+                        <a class="user-link" asp-area="" asp-page="/User">@posts[i].userid</a>
+                        <br/>
+                        <small style="">@posts[i].created.ToString("yyyy/MM/dd HH:mm")</small>
+                    </p>
+                </div>
+
+                <div class="col-9"><p>@posts[i].post</p></div>
+            </div>
+                
+
+        }
+    }    
+
+    
+
+</div>
+
+@{
+
+    string handler = "?handler=" + Handler.CurrTopic + "?post=edit";
+
+}
+
+
+
+<div class="row mb-4" id="answer">
+    <div class="col-12">
+        @{
+        <form asp-page-handler="post" method="post">
+                <textarea class="form-control" type="text" name="post" id="post" rows="3"></textarea>
+                <br/>
+                <button class="btn btn-primary text-left" id="sendpost">Answer</button>
+        </form>
+        }
+
+    </div>
+</div>
+

@@ -1,0 +1,48 @@
+﻿@page
+@model Guestbook.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    
+}
+
+@Html.Partial("Alert.cshtml")
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="display-4">Register</h1>
+    </div>
+    <div class="col-12">
+        <p>Be a part of the forum</p>
+    </div>
+</div>
+
+
+
+
+
+<div class="row col mb-4">
+    @{
+        
+        <form asp-page-handler="register" method="post">
+            <div class="form-group">
+                <label class="" for="name">Full name</label>
+                <input class="form-control" type="text" name="name" id="userid" placeholder="Full name" autocomplete="off">
+                <br/>
+                <label class="" for="email">Email</label>
+                <input class="form-control" type="text" name="email" id="email" placeholder="Email" autocomplete="off">
+                <br/>
+                <label class="" for="userid">Username</label>
+                <input class="form-control" type="text" name="userid" id="userid" placeholder="Username" autocomplete="off">
+                <br/>
+                <label class="" for="password">Password</label>
+                <input class="form-control" type="password" name="password" id="password" placeholder="Password" autocomplete="off">
+                <br/>
+                <a class="btn btn-secondary" asp-area="" asp-page="/Index">Back</a>    
+                <input type="submit" value="Register" class="btn btn-primary" />
+            </div>
+        </form>
+        
+        }
+
+    
+</div>

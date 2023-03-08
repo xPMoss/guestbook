@@ -1,0 +1,20 @@
+﻿@page
+@model Guestbook.UserModel
+@{
+    ViewData["Title"] = "User Site";
+    
+}
+@{
+
+    List<User> users = Handler.getUsers(Handler.CurrUser);
+
+
+}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="display-4">User site</h1>
+    </div>
+    <div class="col-12">
+        <p>This site and/or function is not ready yet!</p>
+    </div>
+</div>
